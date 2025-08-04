@@ -2,18 +2,21 @@ import { Input } from "@mui/material";
 import { useEffect, useState } from "react";
 
 type EditableCellProps = {
-  getValue: () => string;
+  getValue: () => string | null;
 };
 
-const EditableCell = ({ getValue }: EditableCellProps) => {
-  const initialValue = getValue();
+const EditableCell = ({ getValue, row, column, table }: EditableCellProps) => {
   const [value, setValue] = useState("");
+  const onBlur = () => {
+    table.options.meta?.updateData(row.index, column.id, value);
+  };
+  const initialValue = getValue() ?? "";
   useEffect(() => {
     setValue(initialValue);
-    console.log("slkfadfj ", initialValue);
   }, [initialValue]);
   return (
     <Input
+      onBlur={onBlur}
       type="text"
       onChange={(e) => setValue(e.target.value)}
       value={value}

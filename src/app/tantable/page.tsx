@@ -34,22 +34,21 @@ const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    size: 98,
+    size: 120,
     minSize: 100,
     maxSize: 200,
     cell: (props) => {
       const status = props.getValue() as Status | null;
       const statusName = status?.name ?? "No Status";
-      console.log("Status Name:", statusName); // ✅ Console log here
       return <p>{statusName}</p>;
     },
   },
   {
     accessorKey: "due",
     header: "Due",
-    minSize: 110,
-    maxSize: 160,
-    size: 110,
+    minSize: 170,
+    maxSize: 250,
+    size: 190,
     cell: EditableCell,
   },
   {
@@ -57,21 +56,34 @@ const columns: ColumnDef<Task>[] = [
     maxSize: 300,
     accessorKey: "notes",
     header: "Notes",
-    size: 215,
+    size: 245,
     cell: EditableCell,
   },
 ];
 
 const Page = () => {
-  const [data] = useState<Task[]>(DATA);
+  const [data, setData] = useState<Task[]>(DATA);
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     columnResizeMode: "onChange",
+    meta: {
+      updateData: (rowIndex, columnId, value) =>
+        setData((prev) =>
+          prev.map((row, index) =>
+            index === rowIndex
+              ? {
+                  ...prev[rowIndex],
+                  [columnId]: value,
+                }
+              : row
+          )
+        ),
+    },
   });
-
+  console.log(data);
   return (
     <Box sx={{ padding: "16px", display: "flex", justifyContent: "center" }}>
       <table
