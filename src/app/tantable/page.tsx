@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-table";
 import React, { useState } from "react";
 import EditableCell from "./editableCell";
+import StatusCell from "./statusCell";
 
 type Status = {
   id: number;
@@ -34,14 +35,10 @@ const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    size: 120,
+    size: 200,
     minSize: 100,
-    maxSize: 200,
-    cell: (props) => {
-      const status = props.getValue() as Status | null;
-      const statusName = status?.name ?? "No Status";
-      return <p>{statusName}</p>;
-    },
+    maxSize: 300,
+    cell: StatusCell,
   },
   {
     accessorKey: "due",

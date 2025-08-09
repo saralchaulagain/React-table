@@ -10,14 +10,14 @@ type Task = {
   due: Date | null;
   notes: string;
 };
-const STATUS_ON_DECK: Status = { id: 1, name: "On Deck", color: "blue.300" };
+const STATUS_ON_DECK: Status = { id: 1, name: "On Deck", color: "blue" };
 const STATUS_IN_PROGRESS: Status = {
   id: 2,
   name: "In Progress",
-  color: "yellow.400",
+  color: "yellow",
 };
-const STATUS_TESTING: Status = { id: 3, name: "Testing", color: "pink.300" };
-const STATUS_DEPLOYED: Status = { id: 4, name: "Deployed", color: "green.300" };
+const STATUS_TESTING: Status = { id: 3, name: "Testing", color: "pink" };
+const STATUS_DEPLOYED: Status = { id: 4, name: "Deployed", color: "green" };
 
 export const STATUSES: Status[] = [
   STATUS_ON_DECK,
