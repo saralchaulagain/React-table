@@ -80,7 +80,6 @@ const Page = () => {
         ),
     },
   });
-  console.log(data);
   return (
     <Box sx={{ padding: "16px", display: "flex", justifyContent: "center" }}>
       <table
