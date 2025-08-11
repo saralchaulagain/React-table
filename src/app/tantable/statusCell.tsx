@@ -60,6 +60,14 @@ export default function StatusCell({
             </Button>
           )}
           <Menu {...bindMenu(popupState)}>
+            <MenuItem
+              onClick={() => (
+                updateData(row.index, column.id, { id: "red", name: "Red" }),
+                popupState.close()
+              )}
+            >
+              <ColorIcon color={red[400]} marginRight={4} /> None
+            </MenuItem>
             {STATUSES.map((status) => (
               <MenuItem
                 onClick={() => (
@@ -71,7 +79,7 @@ export default function StatusCell({
                 )}
                 key={status.id}
               >
-                <ColorIcon color={status.color} mr={4} />
+                <ColorIcon color={status.color} marginRight={4} />
                 {status.name}
               </MenuItem>
             ))}
