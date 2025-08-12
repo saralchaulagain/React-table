@@ -62,7 +62,7 @@ export default function StatusCell({
           <Menu {...bindMenu(popupState)}>
             <MenuItem
               onClick={() => (
-                updateData(row.index, column.id, { id: "red", name: "Red" }),
+                updateData(row.index, column.id, { id: "red", name: "" }),
                 popupState.close()
               )}
             >
